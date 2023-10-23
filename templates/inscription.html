@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>geopovnet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="author" content="manel alayet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/material-ui/4.12.4/index.js" integrity="sha512-wEnX3bNd/CdyrOFR0KIGlHihK/w9x3/It8Vc18aymEF/F/f1q0Mq8T+GSxF1wYUACLEGECapuIYQdQlKY1LBJw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+    integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- STYLE CSS -->
+  <link rel="stylesheet" href="static/css/index.css" />
+  <script src={{url_for('static', filename='js/index.js' )}} defer></script>
+  <script src={{url_for('static', filename='js/inscription.js' )}} defer></script>
+
+</head>
+
+<body>
+  <div class='content'>
+    <div class='content-wrap'>
+      <header>
+        <div class="logo-header">
+          <a href="#"><img class="geopovnet-logo" src="static/img/logo_geopovnet.svg" /></a>
+        </div>
+      </header>
+      <div class="wrapper" style="background-color: white">
+        <div class="inner">
+          <div class="image-holder">
+            <img src="static\img\bg-image.svg" alt="" />
+          </div>
+          <form action="{{url_for('inscription')}}" method='POST' autocomplete='off'>
+            <div class="text-greeting">
+              <h4>BIENVENUE SUR GEOPOVNET</h4>
+              <h5>
+                Un clic vous a amené ici, et nous sommes ravis de vous avoir
+                parmis nous!.
+              </h5>
+            </div>
+            <div class="items idItems">
+
+              <input type="text" placeholder="" name="username" id="id-input" class='inputID'
+                autocomplete='off' /><label for="id-input">Prénom et nom </label>
+            </div>
+
+            <div class="items emailItems">
+
+              <input type="email" placeholder="" id="email-input" class="emailInputGP" name='email'
+                autocomplete='off' /><label for="email-input">E-mail</label>
+            </div>
+            <div class="items" id="pass">
+              <input type="password" placeholder="" id="password-input" name='password' maxlength="20"
+                autocomplete='off' /> <label id='pass-label' for="password-input">Mot de passe </label>
+              <span data-toggle="#password-input" id='eye'><i class="fa-regular fa-eye toggle-password"></i></span>
+            </div>
+            <div class="meter">
+              <div class="meter-evaluator">
+                <span class="weak"></span>
+                <span class="medium"></span>
+                <span class="strong"></span>
+              </div>
+              <div class="textEl">
+              </div>
+            </div>
+            
+            <div id="mdps-oubli">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <span class="form-check-label" for="flexCheckDefault">
+                J'accepte les termes de confidentialités et j'atteste que j'ai lu et approuvée les <a id='termes'>
+                  termes de protection de l'information</a>
+              </span>
+            </div>
+            <button id="btn-continue">
+              <i class="zmdi zmdi-arrow-right"></i><a id="href-continuer"> Continuer</a>
+            </button>
+            <button type="submit" class="btn" id="inscription">
+              <i class="zmdi zmdi-arrow-right"></i><a id='link' href={{url_for('connexion')}}> Créer mon compte</a>
+            </button>
+
+            <div class="info">
+              <div><i class="fa-solid fa-circle-info icon-info"></i></div>
+              <div>
+                <span>En créant un compte, votre adresse e-mail sera inscrite à la newsletter. Pour plus de détails, veuillez consulter notre <a href="#">Politique de confidentialité</a>.</span>
+              </div>
+            </div>
+            <div class="notification">
+              {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              {% endfor %}
+              {% endif %}
+              {% endwith %}
+
+            </div>
+            <div class="separator">
+              <span class="line"></span>
+              <span class="text">ou</span>
+              <span class="line"></span>
+            </div>
+            <div class="btns_authentificate">
+              <button id="microsoft" >
+                <div id='btn-wrapper'>
+                  <img src="static\img\microsoft.svg" alt="" />
+                  <span> Continuer avec
+                    Microsoft</span>
+                </div>
+              </button>
+              <button id="google" >
+                <div id='btn-wrapper'>
+                  <img src="static\img\google.svg" alt="" />
+                  <span>Continuer avec Google</span>
+                </div>
+              </button>
+              <button id="github" >
+                <div id='btn-wrapper'>
+                  <img src="static\img\apple.png" alt="" />
+                  <span>Continuer avec github</span>
+                </div>
+              </button>
+            </div>
+
+            <div class="endform">
+              <span>Vous possédez déjà un compte ? </span>
+              <h6 id="ins-redirect"><a href='{{url_for('connexion')}}'>S’identifier</a></h6>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class='ft-ctn'>
+        <div id="footer-items">
+          <ul>
+            <li><a>À propos</a></li>
+            <li><a>Stratégie de confidentialité</a></li>
+            <li><a>Copyright</a></li>
+            <li><a>Contact</a></li>
+            <li><a>collaboration</a></li>
+            <li><a>Demo</a></li>
+          </ul>
+        </div>
+        <div id='copyright'><span>Copyright © 2023 Geopovnet<span></div>
+      </div>
+
+    </footer>
+  </div>
+  <script>
+
+  </script>
+</body>
+
+</html>

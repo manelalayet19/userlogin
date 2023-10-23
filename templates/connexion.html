@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>geopovnet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="manel alayet">
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <!-- <link
+    rel="stylesheet"
+    href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css"/> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- STYLE CSS -->
+  <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}" />
+  <script src={{url_for('static', filename='js/index.js')}} defer></script>
+  <script src={{url_for('static', filename='js/connexion.js')}} defer></script>
+
+  </head>
+
+  <body>
+    <div class='content'>
+      <div class='content-wrap'>
+    <header>
+      <div class="logo-header">
+        <a href="#"
+          ><img class="geopovnet-logo" src="static/img/logo_geopovnet.svg"
+        /></a>
+      </div>
+    </header>
+    <div class="wrapper" style="background-color: white">
+      <div class="inner">
+        <div class="image-holder">
+          <img src="static\img\bg-image.svg" alt="" />
+        </div>
+        <!-- action="{{url_for('connexion')}}" method ='get'  -->
+        <form  autocomplete='off' action="{{url_for('connexion')}}" method ='post'>
+          <div class="text-greeting">
+            <h4>BIENVENUE SUR GEOPOVNET</h4>
+            <h5>
+              Un clic vous a amené ici, et nous sommes ravis de vous avoir
+              parmis nous !.
+            </h5>
+          </div>
+          <div class="profile">
+            <div><i class="fa-solid fa-circle-user user-icon "></i></div>
+            <div class="profile-email"></div>
+          </div>
+          <div class="items" id="mail">
+
+            <input
+              type="email"
+              placeholder=""
+              id="email-input"  name ='email' autocomplete ='off'
+            /><label for="email-input">E-mail</label>
+          </div>
+
+          <div class="items" id="connct-pass">
+            <input
+              type="password"
+              placeholder=""
+              id="password-cnt"  autocomplete ='off' name='password' required 
+            />           <label  id='pass-label' for="password-cnt">Mot de passe </label>
+               <span data-toggle="#password-cnt" id='eye'><i class="fa-regular fa-eye toggle-password"></i></span>
+          </div>
+          <div class="msg">
+            <span class="el"></span>
+          </div>
+          <div id="mdps-oublier" class="mdps-forgot">
+            <span>Mot de passe oublié ? </span>
+          </div>
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <div class="notification">
+              {% for message in messages %}
+              <div class="alert"  role="alert">
+                  {{ message }}
+              </div>
+              {% endfor %}
+          </div>
+          {% endif %}
+          {% endwith %}
+          <button type="button" id="continue-btn" >
+            <i class="zmdi zmdi-arrow-right"></i> Continuer
+          </button>
+          <button type="submit" id="conct-btn" >
+            <i class="zmdi zmdi-arrow-right"></i> connexion
+          </button>
+          
+          <div class="separator">
+            <span class="line"></span>
+            <span class="text">ou</span>
+            <span class="line"></span>
+          </div>
+          <div class="social">
+            <button id="microsoft">
+              <div id='btn-wrapper'>
+                <img src="static\img\microsoft.svg" alt="" />
+                <span > Continuer avec
+              Microsoft</span>
+              </div>
+
+            </button>
+            <button id="google" >
+              <div id='btn-wrapper'>
+              <img src="static\img\google.svg" alt="" />
+              <span>Continuer avec Google</span></div>
+            </button>
+            <button id="github" >
+              <div id='btn-wrapper'>
+              <img src="static\img\apple.png" alt="" />
+              <span>Continuer avec github</span></div>
+            </button>
+          </div>
+
+          <div class="endform">
+            <span>Vous êtes un nouvel utilisateur de Geopovnet ?</span>
+            <h6 id="ins-redirect"><a href='{{url_for('inscription')}}'>Créer un compte</a></h6>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    <footer>
+      <div class='ft-ctn'>
+        <div id="footer-items">
+        <ul>
+          <li><a>À propos</a></li>
+          <li><a>Stratégie de confidentialité</a></li>
+          <li><a>Copyright</a></li>
+          <li><a>Contact</a></li>
+          <li><a>collaboration</a></li>
+          <li><a>Demo</a></li>
+        </ul>
+      </div>
+      <div id='copyright'><span>Copyright © 2023 Geopovnet<span></div></div>
+
+    </footer>
+  </body>
+</html>
